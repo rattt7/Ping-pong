@@ -55,6 +55,9 @@ racket2 = Player('racket.png', 520, 200, 50, 150, 4)
 ball = GameSprite('tenis_ball.png', 200, 200, 50, 50, 4)
 
 
+#движение мяча
+dx = 3
+dy = 3
 
 
 game = True
@@ -68,7 +71,12 @@ while game:
     if finish == False:
         racket1.update_l()
         racket2.update_r()
-       
+        ball.rect.x += dx
+        ball.rect.y += dy
+        if ball.rect.y<0 or ball.rect.y>=win_height - 50:
+            dy *= -1
+
+
         window.fill((100,100,100))
         racket1.reset()
         racket2.reset()
@@ -77,3 +85,5 @@ while game:
 
     display.update()
     clock.tick(FPS)
+
+
